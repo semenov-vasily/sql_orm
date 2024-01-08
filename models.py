@@ -21,10 +21,10 @@ class Book(Base):
     title = sq.Column(sq.String(length=50), nullable=False)
     id_publisher = sq.Column(sq.Integer, sq.ForeignKey("publisher.id"), nullable=False)
 
-    book_publisher = relationship(Publisher, backref="book")
+    publisher = relationship(Publisher, backref="book")
 
     def __str__(self):
-        return f'{self.title}, {self.book_publisher}'
+        return f'{self.title}, {self.publisher}'
 
 # Таблица магазинов
 class Shop(Base):
@@ -44,11 +44,11 @@ class Stock(Base):
     id_book = sq.Column(sq.Integer, sq.ForeignKey("book.id"), nullable=False)
     id_shop = sq.Column(sq.Integer, sq.ForeignKey("shop.id"), nullable=False)
 
-    stock_book = relationship(Book, backref="stock")
-    stock_shop = relationship(Shop, backref="stock")
+    book = relationship(Book, backref="stock")
+    shop = relationship(Shop, backref="stock")
 
     def __str__(self):
-        return f'{self.stock_book}, {self.stock_shop}, {self.count}'
+        return f'{self.book}, {self.shop}, {self.count}'
 
 # Таблица продаж
 class Sale(Base):
@@ -59,10 +59,10 @@ class Sale(Base):
     count = sq.Column(sq.Integer, nullable=False)
     id_stock = sq.Column(sq.Integer, sq.ForeignKey("stock.id"), nullable=False)
 
-    sale_stock = relationship(Stock, backref="sale")
+    stock = relationship(Stock, backref="sale")
 
     def __str__(self):
-        return f'{self.sale_stock}, {self.count}, {self.price}, {self.date_sale}'
+        return f'{self.stock}, {self.count}, {self.price}, {self.date_sale}'
 
 
 def create_tables(engine):

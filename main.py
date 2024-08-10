@@ -6,7 +6,7 @@ from sqlalchemy.orm import sessionmaker
 
 from models import create_tables, Publisher, Book, Shop, Stock, Sale
 
-DSN = "postgresql://postgres:*******@localhost:5432/*******"
+DSN = "postgresql://postgres:rS8-t3j-3V7-gb8@localhost:5432/sqlalchemy"
 engine = sqlalchemy.create_engine(DSN)
 
 # Удаление, создание таблиц
